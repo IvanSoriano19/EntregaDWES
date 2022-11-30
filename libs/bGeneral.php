@@ -260,6 +260,62 @@ function cCheck(array $text, string $campo, array &$errores, array $valores, boo
     return true;
 }
 
+/* Por defecto es no sensible a mayúsculas, permite un espacio entre palabras y cadenas de longitud entre 1 y 30 */
+function cUsuario(string $text, string $campo, array &$errores, int $max = 30, int $min = 1, string $case = "i")
+{
+    if ((preg_match("/^[A-Za-zÑñ0-9\*\+\_\-]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
+
+        return true;
+    }
+    $errores[$campo] = "El $campo sólo puede contener letras";
+    return false;
+}
+
+
+function cPassword(string $text, string $campo, array &$errores, int $max = 15, int $min = 4, string $case = "i")
+{
+    $regex = "/[A-Za-zÑn0-9\*\_\-\$\&\/\\\+]{" . $min . "," . $max . "}$/u$case";
+    if ((preg_match($regex, sinTildes($text)))) {
+
+        return true;
+    }
+    $errores[$campo] = "El $campo sólo puede contener letras";
+    return false;
+}
+
+/*
+ * Función que valida fechas.
+ * Por defecto en formato dd-mm-aaa. Caso 1 mm/dd/aaaa. Caso 2 aaaa/mm/dd
+ * Ponemos como caso por defecto el que utilice nuestro formulario
+ * Permite separador / o -
+ */
+function cFecha(string $text, string $campo, array &$errores, string $formato = "0")
+{
+    $arrayFecha = preg_split("/[\/-]/", $text);
+
+    if (count($arrayFecha) == 3) {
+        switch ($formato) {
+            case ("0"):
+                return checkdate($arrayFecha[1], $arrayFecha[0], $arrayFecha[2]);
+                break;
+
+            case ("1"):
+                return checkdate($arrayFecha[0], $arrayFecha[1], $arrayFecha[2]);
+                break;
+
+            case ("2"):
+                return checkdate($arrayFecha[1], $arrayFecha[2], $arrayFecha[0]);
+                break;
+            default:
+                $errores[$campo] = "El $campo tiene errores";
+                return false;
+        }
+    } else {
+        $errores[$campo] = "El $campo tiene errores";
+        return false;
+    }
+}
+
 
 /**
  * Funcion cFile
