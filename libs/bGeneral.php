@@ -127,6 +127,17 @@ function recoge(string $var)
     return $tmp;
 }
 
+//funcion para recoger el string con espacios
+function recogeLimpio(string $var)
+{
+    if (isset($_REQUEST[$var]) && (!is_array($_REQUEST[$var]))) {
+        $tmp = strip_tags($var);
+    } else
+        $tmp = "";
+
+    return $tmp;
+}
+
 /**
  * Funcion recogeArray
  * 
@@ -274,7 +285,7 @@ function cUsuario(string $text, string $campo, array &$errores, int $max = 30, i
 
 function cPassword(string $text, string $campo, array &$errores, int $max = 15, int $min = 4, string $case = "i")
 {
-    $regex = "/[A-Za-zÑn0-9\*\_\-\$\&\/\\\+]{" . $min . "," . $max . "}$/u$case";
+    $regex = "/[A-Za-zÑn0-9\*\_\-\$\&\/\\\\\\+]{" . $min . "," . $max . "}$/u$case";
     if ((preg_match($regex, sinTildes($text)))) {
 
         return true;
@@ -291,12 +302,15 @@ function cPassword(string $text, string $campo, array &$errores, int $max = 15, 
  */
 function cFecha(string $text, string $campo, array &$errores, string $formato = "0")
 {
-    $arrayFecha = preg_split("/[\/-]/", $text);
+    $arrayFecha = preg_split("/[-]/", $text);
 
     if (count($arrayFecha) == 3) {
         switch ($formato) {
             case ("0"):
-                return checkdate($arrayFecha[1], $arrayFecha[0], $arrayFecha[2]);
+                //formato dia mes ano
+                // $fechaDMA = checkdate($arrayFecha[0], $arrayFecha[1], $arrayFecha[2]);
+                $fechaDMA = $arrayFecha[2] ."-". $arrayFecha[1] ."-". $arrayFecha[0];
+                return $fechaDMA;
                 break;
 
             case ("1"):
