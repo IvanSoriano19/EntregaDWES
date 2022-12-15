@@ -16,6 +16,9 @@ cabecera("Comprobar");
 
 if (isset($_POST['bAceptar'])) {
     //recogemos y comprobamos usuario
+
+    
+
     if (! strcmp(recoge("nombre"), "root") && ! strcmp(recoge("clave"), "super")) {
     /*
     * Inicializamos variables de sesión. En caso de tener guardaríamos también nivel de usuario
@@ -32,8 +35,8 @@ if (isset($_POST['bAceptar'])) {
 }
 
 if (isset($_POST['bAceptarRegistro'])) {
-    $nombre = recogeLimpio("nombre");
-    $apellido = recogeLimpio("apellido");
+    $nombre = recoge("nombre");
+    $apellido = recoge("apellido");
     $usuario = recoge("usuario");//? hay que hacer que contenga letras, numeros y _ . Maximo 12
     $clave = recoge("clave"); //? letras, numeros, y caracteres raros de esos, max 15
     $localidad = recoge("localidad");
@@ -45,8 +48,10 @@ if (isset($_POST['bAceptarRegistro'])) {
 
     $fechaDMA = cFecha($fecha,"fecha",$errores,0);
 
-    $usuarioFile = "$nombre".","."$apellido".","."$usuario".","."$clave".","."$localidad".","."$provincias".","."$serializeAficiones".","."$fechaDMA"; 
-    //? meter esto en un fichero
+    $usuarioFile = "$nombre"."/"."$apellido"."/"."$usuario"."/"."$clave"."/"."$localidad"."/"."$provincias"."/"."$serializeAficiones"."/"."$fechaDMA"; 
+    
+    darAlta($usuarioFile);
+
     echo "$usuarioFile";
 
 

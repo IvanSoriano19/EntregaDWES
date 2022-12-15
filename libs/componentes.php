@@ -17,3 +17,20 @@ function printCheck(array $valores, string $nombre){
     }
     echo "</label>";
 }
+
+function darAlta($usuario, $ruta = "../usuarios.txt")
+{
+
+    if ($archivo = fopen($ruta, "a")) {
+        fwrite($archivo, $usuario . PHP_EOL);
+        fclose($archivo);
+        return true;
+        
+    } else {
+        return false;
+    }
+}
+
+function comprobarLogin(){
+    
+}
