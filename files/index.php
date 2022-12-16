@@ -1,7 +1,7 @@
 <?php
 include ("../libs/bGeneral.php");
 include ("../libs/config.php");
-include ("../libs/componenetes.php");
+include ("../libs/componentes.php");
 
 session_start();
 /*

@@ -274,7 +274,7 @@ function cUsuario(string $text, string $campo, array &$errores, int $max = 30, i
 
 function cPassword(string $text, string $campo, array &$errores, int $max = 15, int $min = 4, string $case = "i")
 {
-    $regex = "/[A-Za-zÑn0-9\*\_\-\$\&\/\\\+]{" . $min . "," . $max . "}$/u$case";
+    $regex = "/[A-Za-zÑn0-9\*\_\-\\$\&\/\\\\\\+]{" . $min . "," . $max . "}$/u$case";
     if ((preg_match($regex, sinTildes($text)))) {
 
         return true;
