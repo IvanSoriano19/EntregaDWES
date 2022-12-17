@@ -17,3 +17,52 @@ function printCheck(array $valores, string $nombre){
     }
     echo "</label>";
 }
+
+
+/**
+ * 
+ * funcion devuelveFicheros
+ * Función que recorre y devuelve un array con el nombre de los archivos contenidos en un directorio.
+ * Realiza una función devuelveFicheros que recorre un directorio devolviendo los nombres de los archivos que contiene, 
+ * sólo nombre de los archivos no directorios. 
+ * Devolvemos un array y false en caso de error.
+ * 
+ * @param string $path
+ * @return array|bool
+ */
+
+function devuelveFicheros($path)
+{
+       
+    echo "<script>console.log('path: " . $path . "' );</script>";
+    if (is_dir($path)) {
+        $arbol = [];
+        if ($dir = opendir($path)) {
+            while ($elemento = readdir($dir)) {
+                if (is_file($path .DIRECTORY_SEPARATOR. $elemento)) {
+                    $arbol[] = $path .DIRECTORY_SEPARATOR. $elemento;
+                }
+            }
+            closedir($dir);
+            // Sino es un directorio o no se ha podido abrir devuelve false
+            return $arbol;
+        }
+    }
+
+    return false;
+}
+
+
+// muestra una tabla con las imagenes del array
+function mostrarTabla($ficheros)
+{
+    echo "<table>";
+    for ($i = 0; $i < count($ficheros); $i += 2) {
+        echo "<tr>";
+        echo '<td><img src="' . $ficheros[$i] . '" style="width:200px"></td>';
+        if ($i + 1 != count($ficheros))
+            echo '<td><img src="' . $ficheros[$i + 1] . '" style="width:200px"></td>';
+        echo "</tr>";
+    }
+    echo "</table>";
+}
