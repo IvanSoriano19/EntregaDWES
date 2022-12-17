@@ -17,17 +17,13 @@ cabecera("Comprobar");
 if (isset($_POST['bAceptar'])) {
     //recogemos y comprobamos usuario
 
-    // $nameLogin = comprobarLoginUsuario(recoge("nombre"));
-    // $pass = comprobarLoginClave(recoge("clave"));
-
-    // if ($nameLogin && $pass) {
-    if ((comprobarLoginUsuario(recoge("nombre"))) && (comprobarLoginClave(recoge("clave")))) {
+    if ((comprobarLoginUsuario(recoge("usuario"))) && (comprobarLoginClave(recoge("clave")))) {
         /*
     * Inicializamos variables de sesión. En caso de tener guardaríamos también nivel de usuario
     * En la variable acceso guardamos 1 si el usuario se ha logueado.
     */
         $_SESSION['acceso'] = 1;
-        $_SESSION['usuario'] = 'root';
+        $_SESSION['usuario'] = recoge("usuario");
         header("location:privada.php");
     } else {
         echo "El nombre o contraseña son incorrectos<br>";
@@ -50,11 +46,19 @@ if (isset($_POST['bAceptarRegistro'])) {
 
     $fechaDMA = cFecha($fecha, "fecha", $errores, 0);
     cPassword($clave, "clave", $errores);
-    cUsuario($usuario, "usuario", $errores);    
+    cUsuario($usuario, "usuario", $errores);
 
     $usuarioFile = "$nombre" . "/" . "$apellido" . "/" . "$usuario" . "/" . "$clave" . "/" . "$localidad" . "/" . "$provincias" . "/" . "$serializeAficiones" . "/" . "$fechaDMA";
 
     darAlta($usuarioFile);
-    
-}
 
+    $ruta = "../img/$usuario"; //Verificar el directorio actual
+    //Esto es suponiendo que ya está creada la carpeta archivos_subidos
+    if (mkdir($ruta, 0777)) {
+        mkdir($ruta . "/viajes",0777);
+        mkdir($ruta . "/amigos",0777);
+        mkdir($ruta . "/naturaleza",0777);
+    } else {
+        echo "Fallo al crear la subcarpeta";
+    }
+}

@@ -9,7 +9,7 @@
     <h1>LOGIN</h1>
     <p>root, super</p>
     <FORM METHOD=POST ACTION=index.php>
-        <p>Nombre: <INPUT TYPE=TEXT NAME=nombre></p>
+        <p>Usuario: <INPUT TYPE=TEXT NAME=usuario></p>
         <p>Contraseña: <INPUT TYPE=PASSWORD NAME=clave></p>
         <p>
         <INPUT TYPE="SUBMIT" NAME="bAceptar" VALUE="Aceptar">

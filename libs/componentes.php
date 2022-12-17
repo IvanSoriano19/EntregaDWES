@@ -39,7 +39,7 @@ function comprobarLoginUsuario($name, $ruta = "../usuarios.txt")
             while (!feof($archivo)) {
                 $contenido = fgets($archivo);
                 $usuario = explode("/", $contenido);
-                $nombres[] = $usuario[0];
+                $nombres[] = $usuario[2];
             }
             fclose($archivo);
         }
