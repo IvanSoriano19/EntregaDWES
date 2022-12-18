@@ -86,8 +86,6 @@ function comprobarLoginClave($clave, $ruta = "../usuarios.txt")
 
 function devuelveFicheros($path)
 {
-       
-    echo "<script>console.log('path: " . $path . "' );</script>";
     if (is_dir($path)) {
         $arbol = [];
         if ($dir = opendir($path)) {

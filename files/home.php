@@ -7,7 +7,7 @@
 
 <body>
     <h1>HOME</h1>
-    <form method=post action=privada.php>
+    <form method=post action=privada.php enctype="multipart/form-data">
         Bienvenido a la página privada 
         <?php 
             echo $_SESSION['usuario'];
@@ -15,18 +15,21 @@
         
         <br>
         
-        <input type="file" name="file" style="margin-right: 10px; margin-top: 10px;">
-        <?php
-            echo (isset($errores['file'])) ? "$errores[file] <br>" : "";
-        ?>
+        <input type="file" name="foto" value="<?= isset($foto) ? $foto : ""; ?>" style="margin-right: 10px; margin-top: 10px;">
         <?php
             if (is_array($categorias)) {
                 foreach ($categorias as $c){
-                    echo '<input type="radio" name="categoria[]" value="'.$c.'" style="margin-top: 10px;"><span style="margin-right: 10px;">'.$c.'</span>';
+                    echo '<input type="radio" name="categoria" value="'.$c.'" style="margin-top: 10px;"><span style="margin-right: 10px;">'.$c.'</span>';
                 }
             }
         ?>
         <input type="submit" name="bSubirImagen" value="Subir imagen" style="margin-top: 10px;">
+        <br>
+
+        <?php
+            echo (isset($errores['foto'])) ? "$errores[foto] <br>" : "";
+            echo (isset($errores['categoria'])) ? "$errores[categoria] <br>" : "";
+        ?>
 
         <hr>
 

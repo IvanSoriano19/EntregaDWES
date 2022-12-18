@@ -227,12 +227,12 @@ function cNum(string $num, string $campo, array &$errores, bool $requerido = TRU
  * 
  * @return boolean
  */
-function cRadio(string $text, string $campo, array &$errores, array $valores, bool $requerido = TRUE)
+function cRadio(string $text, string $campo, array &$errores, array $valores)
 {
     if (in_array($text, $valores)) {
         return true;
     }
-    if (!$requerido && $text == "") {
+    if ($text == "") {
         return true;
     }
     $errores[$campo] = "Error en el campo $campo";
