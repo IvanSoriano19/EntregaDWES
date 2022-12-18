@@ -8,17 +8,19 @@ cabecera("Ejercicio1");
 
 $carpeta = recoge("categoria");
 
-$directory="../img/".$_SESSION['usuario'];
+$directory = "../img/" . $_SESSION['usuario'];
 if ($carpeta !== "General") {
-    $directory .= "/".$carpeta;
+    $directory .= "/" . $carpeta;
 }
 
-$elementos=devuelveFicheros("$directory");
+$usuario = $_SESSION['usuario'];
+
+echo '<img src="../img/fotosPerfil/' . $usuario . '.jpg" width="50px" height="50px" style="position: absolute; top: 10px; right: 10px">';
+
+$elementos = devuelveFicheros("$directory");
 
 mostrarTabla($elementos);
 
 echo "<a href=privada.php>Volver a home</a>";
 
 pie();
-
-?>

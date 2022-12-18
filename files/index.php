@@ -52,12 +52,24 @@ if (isset($_POST['bAceptarRegistro'])) {
 
     darAlta($usuarioFile);
 
+
+    $rutaPerfil = "../" . $rutaImagenes . "/fotosPerfil";
+    echo $rutaPerfil;
+
+    var_dump(($_FILES["imagen"]['size']));
+
+    $_FILES["imagen"]['name'] = $usuario.".jpg";
+
+
+    $fotoPerfil = cfile("imagen",  $errores, $extensionesValidas, $rutaPerfil, $maxFichero, false);
+
+
     $ruta = "../img/$usuario"; //Verificar el directorio actual
     //Esto es suponiendo que ya está creada la carpeta archivos_subidos
     if (mkdir($ruta, 0777)) {
-        mkdir($ruta . "/viajes",0777);
-        mkdir($ruta . "/amigos",0777);
-        mkdir($ruta . "/naturaleza",0777);
+        mkdir($ruta . "/viajes", 0777);
+        mkdir($ruta . "/amigos", 0777);
+        mkdir($ruta . "/naturaleza", 0777);
     } else {
         echo "Fallo al crear la subcarpeta";
     }

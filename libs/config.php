@@ -1,7 +1,7 @@
 <?php
-$rutaImagenes="imagenes";
+$rutaImagenes="img";
 
-$extensionesValidas=["jpeg","gif","jpg"];
+$extensionesValidas=["jpeg","gif","jpg", "png"];
 
 $maxFichero=300000;
 

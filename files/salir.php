@@ -4,6 +4,11 @@ session_start();
 /**
  * Destuimos las variables y la sesión
  **/
+
+$usuario = $_SESSION['usuario'];
+
+echo "Nos vemos pronto ". $usuario. "<br>";
+
 session_unset ();
 session_destroy();
 cabecera("Comprobar");

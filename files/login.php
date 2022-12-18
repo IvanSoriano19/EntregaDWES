@@ -1,11 +1,9 @@
-<html>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Login</title>
-</head>
-
-<body>
+<?php 
+foreach ($errores as $error) {
+    echo "<br>Error: " . $error . "<br>";
+}
+?>
     <h1>LOGIN</h1>
     <p>root, super</p>
     <FORM METHOD=POST ACTION=index.php>
