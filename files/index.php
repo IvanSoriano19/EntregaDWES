@@ -15,8 +15,7 @@ if (!isset($_SESSION['acceso'])) {
 cabecera("Comprobar");
 
 if (isset($_POST['bAceptar'])) {
-    //recogemos y comprobamos usuario
-
+    
     if ((comprobarLoginUsuario(recoge("usuario"))) && (comprobarLoginClave(recoge("clave")))) {
         /*
     * Inicializamos variables de sesión. En caso de tener guardaríamos también nivel de usuario
@@ -35,8 +34,8 @@ include("login.php");
 if (isset($_POST['bAceptarRegistro'])) {
     $nombre = recoge("nombre");
     $apellido = recoge("apellido");
-    $usuario = recoge("usuario"); //? hay que hacer que contenga letras, numeros y _ . Maximo 12
-    $clave = recoge("clave"); //? letras, numeros, y caracteres raros de esos, max 15
+    $usuario = recoge("usuario"); 
+    $clave = recoge("clave"); 
     $localidad = recoge("localidad");
     $provincias = recoge("provincias");
     $fecha = recoge("fecha");
@@ -52,17 +51,11 @@ if (isset($_POST['bAceptarRegistro'])) {
 
     darAlta($usuarioFile);
 
-
     $rutaPerfil = "../" . $rutaImagenes . "/fotosPerfil";
-    echo $rutaPerfil;
-
-    var_dump(($_FILES["imagen"]['size']));
 
     $_FILES["imagen"]['name'] = $usuario.".jpg";
 
-
     $fotoPerfil = cfile("imagen",  $errores, $extensionesValidas, $rutaPerfil, $maxFichero, false);
-
 
     $ruta = "../img/$usuario"; //Verificar el directorio actual
     //Esto es suponiendo que ya está creada la carpeta archivos_subidos

@@ -30,11 +30,10 @@ if (isset($_POST['bSubirImagen'])) {
     } else {
         $rutaGuardado = "../".$rutaImagenes."/".$_SESSION['usuario']."/".$categoria; 
     }
-    echo "<script>console.log('rutaGuardado: " . $rutaGuardado . "' );</script>";
     
     $nuevaFoto = cFile("foto", $errores, $extensionesValidas, $rutaGuardado, $maxFichero, true);
     if (!$nuevaFoto) {
-        $errores['foto'] = 'La foto no tiene un formato admitido';
+        $errores['foto'] = 'La foto no tiene un formato o tamaño admitido';
         $error = true;
     }
     

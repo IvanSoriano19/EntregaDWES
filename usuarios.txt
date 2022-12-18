@@ -1,6 +1,1 @@
 root/soriano/root/super//Alicante/a:1:{i:0;s:7:"Cocinar";}/
-ivan/ivan/ivan/ivan/ivan/Alava/a:1:{i:0;s:9:"Programar";}/11-11-2001
-raul/raul/raul/raul/raul/Alava/a:1:{i:0;s:11:"Videojuegos";}/11-11-2211
-juan/juan/juan/juan/juan/Alava/a:1:{i:0;s:9:"Programar";}/22-02-2211
-pepa/pepa/pepa/pepa/pepa/Alava/a:1:{i:0;s:5:"Furbo";}/11-11-2111
-pepa/pepa/pepa/pepa/pepa/Alava/a:1:{i:0;s:5:"Furbo";}/11-11-2111
