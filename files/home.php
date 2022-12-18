@@ -17,6 +17,9 @@
         
         <input type="file" name="file" style="margin-right: 10px; margin-top: 10px;">
         <?php
+            echo (isset($errores['file'])) ? "$errores[file] <br>" : "";
+        ?>
+        <?php
             if (is_array($categorias)) {
                 foreach ($categorias as $c){
                     echo '<input type="radio" name="categoria[]" value="'.$c.'" style="margin-top: 10px;"><span style="margin-right: 10px;">'.$c.'</span>';
@@ -38,7 +41,7 @@
 
         <br><br>
         
-        <a href=login.php>Salir del sistema</a>
+        <a href=salir.php>Salir del sistema</a>
     </form>
 </body>
 
