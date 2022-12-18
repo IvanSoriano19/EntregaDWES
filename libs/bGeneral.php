@@ -352,29 +352,35 @@ function cFile(string $nombre, array &$errores, array $extensionesValidas, strin
     // En cualquier otro caso se comprueban los errores del servidor 
     if ($_FILES[$nombre]['error'] != 0) {
         $errores["$nombre"] = "Error al subir el archivo " . $nombre . ". Prueba de nuevo";
+        echo "<script>console.log('errores: " . $errores["$nombre"] . "' );</script>";
         return false;
     } else {
 
         $nombreArchivo = strip_tags($_FILES["$nombre"]['name']);
+        echo "<script>console.log('nombreArchivo: " . $nombreArchivo . "' );</script>";
         /*
              * Guardamos nombre del fichero en el servidor
             */
         $directorioTemp = $_FILES["$nombre"]['tmp_name'];
+        // echo "<script>console.log('directorioTemp: " . $directorioTemp . "' );</script>";
         /*
              * Calculamos el tamaño del fichero
             */
         $tamanyoFile = filesize($directorioTemp);
+        echo "<script>console.log('tamanyoFile: " . $tamanyoFile . "' );</script>";
         
         /*
             * Extraemos la extensión del fichero, desde el último punto.
             */
         $extension = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
+        echo "<script>console.log('extension: " . $extension . "' );</script>";
 
         /*
             * Comprobamos la extensión del archivo dentro de la lista que hemos definido al principio
             */
         if (!in_array($extension, $extensionesValidas)) {
             $errores["$nombre"] = "La extensión del archivo no es válida";
+            echo "<script>console.log('errores: " . $errores["$nombre"] . "' );</script>";
             return false;
         }
         /*
@@ -382,6 +388,7 @@ function cFile(string $nombre, array &$errores, array $extensionesValidas, strin
             */
         if ($tamanyoFile > $max_file_size) {
             $errores["$nombre"] = "La imagen debe de tener un tamaño inferior a $max_file_size kb";
+            echo "<script>console.log('errores: " . $errores["$nombre"] . "' );</script>";
             return false;
         }
 
@@ -397,8 +404,11 @@ function cFile(string $nombre, array &$errores, array $extensionesValidas, strin
              * Podemos hacerlo de diferentes maneras, en este caso se hace añadiendo microtime() al nombre del fichero 
              * si ya existe un archivo guardado con ese nombre.
              * */
+                echo "<script>console.log('is_dir: true' );</script>";
                 $nombreArchivo = is_file($directorio . DIRECTORY_SEPARATOR . $nombreArchivo) ? time() . $nombreArchivo : $nombreArchivo;
+                echo "<script>console.log('nombreArchivo: " . $nombreArchivo . "' );</script>";
                 $nombreCompleto = $directorio . DIRECTORY_SEPARATOR . $nombreArchivo;
+                echo "<script>console.log('nombreCompleto: " . $nombreCompleto . "' );</script>";
                 /**
                  * Movemos el fichero a la ubicación definitiva.
                  * */
@@ -408,13 +418,16 @@ function cFile(string $nombre, array &$errores, array $extensionesValidas, strin
                      */
 
 
+                    echo "<script>console.log('move_uploaded_file: true' );</script>";
                     return $nombreCompleto;
                 } else {
                     $errores["$nombre"] = "Ha habido un error al subir el fichero";
+                    echo "<script>console.log('errores 1: " . $errores["$nombre"] . "' );</script>";
                     return false;
                 }
             }else {
                 $errores["$nombre"] = "Ha habido un error al subir el fichero";
+                echo "<script>console.log('errores 2: " . $errores["$nombre"] . "' );</script>";
                 return false;
             }
         }

@@ -26,9 +26,9 @@ if (isset($_POST['bSubirImagen'])) {
     }
 
     if ($categoria == "") {
-        $rutaGuardado = $rutaImagenes."/".$_SESSION['usuario']; 
+        $rutaGuardado = "../".$rutaImagenes."/".$_SESSION['usuario']; 
     } else {
-        $rutaGuardado = $rutaImagenes."/".$_SESSION['usuario']."/".$categoria; 
+        $rutaGuardado = "../".$rutaImagenes."/".$_SESSION['usuario']."/".$categoria; 
     }
     echo "<script>console.log('rutaGuardado: " . $rutaGuardado . "' );</script>";
     
@@ -37,12 +37,8 @@ if (isset($_POST['bSubirImagen'])) {
         $errores['foto'] = 'La foto no tiene un formato admitido';
         $error = true;
     }
-
-    if (empty($errores)) {
-        
-    } else {
-        include('home.php');
-    }
+    
+    include('home.php');
 } else{
     include("home.php");
 }
