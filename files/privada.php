@@ -43,4 +43,3 @@ if (isset($_POST['bSubirImagen'])) {
     include("home.php");
 }
 ?>
-
