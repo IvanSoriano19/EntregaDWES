@@ -12,12 +12,9 @@
         <?php 
             echo $_SESSION['usuario'];
             $usuario = $_SESSION['usuario'];
-            var_dump(is_file("../img/fotosPerfil/'.$usuario.'.jpg"));
-            echo '<img src="../img/fotosPerfil/'.$usuario.'.jpg" width="50px" height="50px" >';
-            if (is_file("../img/fotosPerfil/'.$usuario.'.jpg")) {
+            if (is_file("../img/fotosPerfil/$usuario.jpg")) {
                 echo '<img src="../img/fotosPerfil/'.$usuario.'.jpg" width="50px" height="50px" style="position: absolute; top: 10px; right: 10px">';
             } else {
-                echo "hola";
                 echo '<img src="../img/fotosPerfil/default.jpg" width="50px" height="50px" style="position: absolute; top: 10px; right: 10px">';
             }
 
